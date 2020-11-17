@@ -1,6 +1,7 @@
 .app {
-  padding: 25px;
+  padding: 15px;
   width: 100%;
+  box-sizing: border-box;
 }
 
 .inactive {
@@ -15,16 +16,15 @@
 
 .room {
   display: flex;
-  margin-left: -25px;
+  flex-wrap: wrap;
+  grid-column-gap: 15px;
+  grid-row-gap: 15px;
 }
 
 .participant {
-  margin-left: 25px;
   box-sizing: border-box;
-  width: 33.33%;
   position: relative;
   border-radius: 8px;
-  box-shadow: 0px 0px 15px 5px #ddd;
 }
 
 .identity {
@@ -36,9 +36,11 @@
 }
 
 video {
-  max-width: 100%;
+  width: auto;
+  height: 42vh;
   display:block;
   border-radius:8px;
+  box-shadow: 0px 0px 15px 5px #ddd;
 }
 
 button {

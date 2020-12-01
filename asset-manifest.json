@@ -1,23 +1,22 @@
 {
   "files": {
-    "main.css": "/video-chat/static/css/main.c40acee4.chunk.css",
-    "main.js": "/video-chat/static/js/main.2ade8ce6.chunk.js",
-    "main.js.map": "/video-chat/static/js/main.2ade8ce6.chunk.js.map",
+    "main.css": "/video-chat/static/css/main.06d9fa46.chunk.css",
+    "main.js": "/video-chat/static/js/main.da058823.chunk.js",
+    "main.js.map": "/video-chat/static/js/main.da058823.chunk.js.map",
     "runtime-main.js": "/video-chat/static/js/runtime-main.3ed57744.js",
     "runtime-main.js.map": "/video-chat/static/js/runtime-main.3ed57744.js.map",
-    "static/js/2.ff441b42.chunk.js": "/video-chat/static/js/2.ff441b42.chunk.js",
-    "static/js/2.ff441b42.chunk.js.map": "/video-chat/static/js/2.ff441b42.chunk.js.map",
+    "static/js/2.e9cabb09.chunk.js": "/video-chat/static/js/2.e9cabb09.chunk.js",
+    "static/js/2.e9cabb09.chunk.js.map": "/video-chat/static/js/2.e9cabb09.chunk.js.map",
     "static/js/3.23baa5fa.chunk.js": "/video-chat/static/js/3.23baa5fa.chunk.js",
     "static/js/3.23baa5fa.chunk.js.map": "/video-chat/static/js/3.23baa5fa.chunk.js.map",
     "index.html": "/video-chat/index.html",
-    "static/css/main.c40acee4.chunk.css.map": "/video-chat/static/css/main.c40acee4.chunk.css.map",
-    "static/js/2.ff441b42.chunk.js.LICENSE.txt": "/video-chat/static/js/2.ff441b42.chunk.js.LICENSE.txt",
-    "static/media/logo.103b5fa1.svg": "/video-chat/static/media/logo.103b5fa1.svg"
+    "static/css/main.06d9fa46.chunk.css.map": "/video-chat/static/css/main.06d9fa46.chunk.css.map",
+    "static/js/2.e9cabb09.chunk.js.LICENSE.txt": "/video-chat/static/js/2.e9cabb09.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.3ed57744.js",
-    "static/js/2.ff441b42.chunk.js",
-    "static/css/main.c40acee4.chunk.css",
-    "static/js/main.2ade8ce6.chunk.js"
+    "static/js/2.e9cabb09.chunk.js",
+    "static/css/main.06d9fa46.chunk.css",
+    "static/js/main.da058823.chunk.js"
   ]
 }

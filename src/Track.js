@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './App.css';
+import './App.scss';
 
 
 class Track extends Component {
@@ -13,11 +13,7 @@ class Track extends Component {
       this.ref.current.appendChild(this.props.track.attach())
     }
   }
-
-  // componentWillUnmount() {
-  //   this.props.track.detach()
-  // }
-
+  
   render() {
     return (
       <div className="track" ref={this.ref}></div> 

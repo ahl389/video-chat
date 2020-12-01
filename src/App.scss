@@ -1,3 +1,6 @@
+@import 'Filters.scss';
+
+
 .app {
   padding: 15px;
   width: 100%;
@@ -10,21 +13,19 @@
   font-size: 1.25em;
 }
 
-.active {
-  position: relative;
-}
-
-.room {
-  display: flex;
-  flex-wrap: wrap;
-  grid-column-gap: 15px;
-  grid-row-gap: 15px;
+.participants {
+  display:flex;
+  flex-wrap:wrap;
+  width:100%;
+  margin-left: -15px;
 }
 
 .participant {
   box-sizing: border-box;
   position: relative;
   border-radius: 8px;
+  margin-left: 15px;
+  margin-bottom: 15px;
 }
 
 .identity {
@@ -33,6 +34,7 @@
   color: white;
   padding-left: 15px;
   box-sizing: border-box;
+  z-index: 1;
 }
 
 video {
@@ -41,6 +43,7 @@ video {
   display:block;
   border-radius:8px;
   box-shadow: 0px 0px 15px 5px #ddd;
+  transform: scale(-1, 1);
 }
 
 button {
@@ -57,6 +60,11 @@ button {
   font-size: 1em;
 }
 
+button:disabled {
+  opacity: .4;
+  cursor:initial;
+}
+
 #leaveRoom {
   margin-top: 25px;
   margin-left: 0;
@@ -71,5 +79,11 @@ input {
   width: 200px;
   font-size: 1em;
   text-align: center;
+  border-radius: 0;
 }
 
+@media (max-width: 1048px) {
+  video {
+    height: 30vh;
+  }
+}

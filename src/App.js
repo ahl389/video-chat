@@ -1,5 +1,4 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
 import React, {Component} from 'react';
 import Room from './Room';
 
@@ -10,8 +9,7 @@ class App extends Component {
 
     this.state = {
       identity: '',
-      room: null,
-      inRoom: false
+      room: null
     }
 
     this.inputRef = React.createRef();
@@ -19,7 +17,7 @@ class App extends Component {
     this.joinRoom = this.joinRoom.bind(this);
     this.leaveRoom = this.leaveRoom.bind(this);
     this.updateIdentity = this.updateIdentity.bind(this);
-    this.focusTextInput = this.focusTextInput.bind(this);
+    this.removePlaceholderText = this.removePlaceholderText.bind(this);
   }
 
   componentDidMount() {
@@ -30,11 +28,11 @@ class App extends Component {
   updateIdentity(event) {
     this.setState({
       identity: event.target.value
-    })
+    });
   }
 
-  focusTextInput() {
-    this.inputRef.current.placeholder = ''
+  removePlaceholderText() {
+    this.inputRef.current.placeholder = '';
   }
   
   async joinRoom() {
@@ -44,37 +42,36 @@ class App extends Component {
       const room = await this.state.connect(data.accessToken, {
         name:'secret-santa4',
         audio: true,
-        video: { width: 640 } 
+        video: true 
       });
 
-      this.setState({ room: room, inRoom: true })
+      this.setState({ room: room });
     } catch(err) {
-      console.log(err)
+      console.log(err);
     }
   }
 
   leaveRoom() {
-    this.state.room.disconnect();
-    this.setState({room: null, inRoom: false})
+    this.setState({ room: null });
   }
 
   render() {
+    const disabled = this.state.identity == '' ? true : false;
+
     return (
       <div className="app">
         { 
-          ! this.state.inRoom
+          this.state.room === null
           ? <div className = "inactive">
-              <input ref={this.inputRef} value={this.state.identity} onClick={this.focusTextInput} onChange={this.updateIdentity} placeholder="What's your name?"></input>
-              {
-                ! this.state.identity == ''
-                ? <button onClick={this.joinRoom}>Join Room</button>
-                : <button disabled onClick={this.joinRoom}>Join Room</button>
-              }
+              <input 
+                ref={this.inputRef} 
+                value={this.state.identity} 
+                onClick={this.removePlaceholderText} 
+                onChange={this.updateIdentity} 
+                placeholder="What's your name?"/>
+              <button disabled={disabled} onClick={this.joinRoom}>Join Room</button>
             </div>
-          : <div className = "active">
-              <Room room={this.state.room} />
-              <button id="leaveRoom" onClick={this.leaveRoom}>Leave Room</button>
-            </div>
+          : <Room leaveRoom={this.leaveRoom} room={this.state.room} />
         }
       </div>
     );

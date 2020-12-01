@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
-import './App.css';
-import Track from './Track'
+import './App.scss';
+import Track from './Track';
+import FilterMenu from './FilterMenu';
+import Filter from './Filter';
 
 
 class Participant extends Component {
@@ -8,10 +10,12 @@ class Participant extends Component {
     super(props)
 
     this.state = {
-      tracks: []
+      tracks: [],
+      filter: 'none'
     }
 
     this.addTrack = this.addTrack.bind(this);
+    this.changeFilter = this.changeFilter.bind(this);
   }
 
   componentDidMount() {
@@ -29,6 +33,10 @@ class Participant extends Component {
     })
   }
 
+  changeFilter(filter) {
+    this.setState({ filter: filter })
+  }
+
   render() {
     return ( 
       <div className="participant" id={this.props.participant.identity}>
@@ -38,6 +46,8 @@ class Participant extends Component {
           ? this.state.tracks.map(track => <Track key={track} owner={this.props.participant.identity} track={track}/>)
           : ''
         }
+        <FilterMenu changeFilter={this.changeFilter} />
+        <Filter name={this.state.filter}/>
       </div>
     );
   }

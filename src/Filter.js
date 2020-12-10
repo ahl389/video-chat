@@ -1,23 +1,9 @@
 import './App.scss';
-
+import * as componentMap from './filters';
 
 function Filter(props) {
-
-  return (
-    <div className={`filter ${props.name}`}>
-      { 
-        props.name == 'snowfall'
-        ? Array(100).fill().map(snowflake => <div className="snowflake"></div>)
-        : ''
-      }
-
-      { 
-        props.name == 'twinkle'
-        ? Array(25).fill().map(light => <div className="light"></div>)
-        : ''
-      }
-    </div>
-  );
+  const Filter = componentMap[props.name]
+  return <Filter/>
 }
 
 export default Filter;

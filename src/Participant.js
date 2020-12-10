@@ -2,52 +2,58 @@ import React, {Component} from 'react';
 import './App.scss';
 import Track from './Track';
 import FilterMenu from './FilterMenu';
-import Filter from './Filter';
-
 
 class Participant extends Component {
   constructor(props) {
-    super(props)
+    super(props);
+
+    const existingPublications = Array.from(this.props.participant.tracks.values());
+    const existingTracks = existingPublications.map(publication => publication.track);
+    const nonNullTracks = existingTracks.filter(track => track !== null)
 
     this.state = {
-      tracks: [],
-      filter: 'none'
+      tracks: nonNullTracks,
+      filter: 'None' 
     }
 
-    this.addTrack = this.addTrack.bind(this);
     this.changeFilter = this.changeFilter.bind(this);
   }
 
   componentDidMount() {
-    const existingPublications = Array.from(this.props.participant.tracks.values());
-    const existingTracks = existingPublications.map(publication => publication.track)
-    this.setState({tracks: existingTracks});
-
-    this.props.participant.on('trackSubscribed', track => this.addTrack(track));
+    if (!this.props.localParticipant) {
+      // when someone subscribes to one a new remote participants audio or video tracks (subscription by local participant happens automatically)
+      this.props.participant.on('trackSubscribed', track => this.addTrack(track));
+      // when a remote participant joins the room and publishes a new data track
+      this.props.participant.on('trackPublished', publication => this.addTrack(publication.track));
+    }
   }
-
 
   addTrack(track) {
     this.setState({
       tracks: [...this.state.tracks, track]
-    })
+    });
   }
 
   changeFilter(filter) {
-    this.setState({ filter: filter })
+    const dataTrack = this.state.tracks.find(track => track.kind == "data");
+    dataTrack.send(filter);
+    this.setState({ filter: filter });
   }
 
   render() {
     return ( 
       <div className="participant" id={this.props.participant.identity}>
         <div className="identity">{ this.props.participant.identity}</div>
-        { 
-          this.state.tracks.length > 0 
-          ? this.state.tracks.map(track => <Track key={track} owner={this.props.participant.identity} track={track}/>)
+        {
+          this.props.localParticipant
+          ? <FilterMenu changeFilter={this.changeFilter} />
           : ''
         }
-        <FilterMenu changeFilter={this.changeFilter} />
-        <Filter name={this.state.filter}/>
+        
+        { 
+          this.state.tracks.map(track => 
+            <Track key={track} filter={this.state.filter} track={track}/>)
+        }
       </div>
     );
   }

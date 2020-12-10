@@ -8,20 +8,17 @@ class Room extends Component {
     super(props);
 
     this.state = {
-      participants: []
+      remoteParticipants: Array.from(this.props.room.participants.values())
     }
 
     this.leaveRoom = this.leaveRoom.bind(this);
   }
 
   componentDidMount() {
-    // Get existing participants and add everyone, including local participants, to participant state
-    const existingParticipants = Array.from(this.props.room.participants.values());
-    this.setState({participants: [...existingParticipants, this.props.room.localParticipant]});
-
     // Add event listeneres for future participants coming or going
     this.props.room.on('participantConnected', participant => this.addParticipant(participant));
     this.props.room.on('participantDisconnected', participant => this.removeParticipant(participant));
+    
     window.addEventListener("beforeunload", this.leaveRoom);
   }
 
@@ -36,9 +33,9 @@ class Room extends Component {
 
   addParticipant(participant) {
     console.log(`${participant.identity} has joined the room.`)
-
+    
     this.setState({
-      participants: [...this.state.participants, participant]
+      remoteParticipants: [...this.state.remoteParticipants, participant]
     })
   }
 
@@ -46,21 +43,20 @@ class Room extends Component {
     console.log(`${participant.identity} has left the room`)
 
     this.setState({
-      participants: this.state.participants.filter(p => p.identity != participant.identity)
+      remoteParticipants: this.state.remoteParticipants.filter(p => p.identity != participant.identity)
     })
   }
 
   render() {
     return (
       <div className="room">
-        <div class = "participants">
-        {
-          this.state.participants.length > 0
-          ? this.state.participants.map(participant => 
+        <div className = "participants">
+          <Participant key={this.props.room.localParticipant.identity} localParticipant="true" participant={this.props.room.localParticipant}/>
+          {
+            this.state.remoteParticipants.map(participant => 
               <Participant key={participant.identity} participant={participant}/>
             )
-          : ''
-        }
+          }
         </div>
         <button id="leaveRoom" onClick={this.leaveRoom}>Leave Room</button>
       </div>

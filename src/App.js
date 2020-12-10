@@ -1,6 +1,7 @@
 import './App.scss';
 import React, {Component} from 'react';
 import Room from './Room';
+const { connect, LocalDataTrack } = require('twilio-video');
 
 
 class App extends Component {
@@ -19,31 +20,19 @@ class App extends Component {
     this.updateIdentity = this.updateIdentity.bind(this);
     this.removePlaceholderText = this.removePlaceholderText.bind(this);
   }
-
-  componentDidMount() {
-    const { connect } = require('twilio-video');
-    this.setState({connect: connect});
-  }
-
-  updateIdentity(event) {
-    this.setState({
-      identity: event.target.value
-    });
-  }
-
-  removePlaceholderText() {
-    this.inputRef.current.placeholder = '';
-  }
   
   async joinRoom() {
     try {
       const response = await fetch(`https://backend-9288-dev.twil.io/token?identity=${this.state.identity}`);
       const data = await response.json();
-      const room = await this.state.connect(data.accessToken, {
+      const room = await connect(data.accessToken, {
         name:'secret-santa4',
         audio: true,
-        video: true 
+        video: true
       });
+
+      const localDataTrack = new LocalDataTrack();
+      await room.localParticipant.publishTrack(localDataTrack);
 
       this.setState({ room: room });
     } catch(err) {
@@ -55,6 +44,16 @@ class App extends Component {
     this.setState({ room: null });
   }
 
+  updateIdentity(event) {
+    this.setState({
+      identity: event.target.value
+    });
+  }
+
+  removePlaceholderText() {
+    this.inputRef.current.placeholder = '';
+  }
+
   render() {
     const disabled = this.state.identity == '' ? true : false;
 
@@ -62,7 +61,7 @@ class App extends Component {
       <div className="app">
         { 
           this.state.room === null
-          ? <div className = "inactive">
+          ? <div className = "lobby">
               <input 
                 ref={this.inputRef} 
                 value={this.state.identity} 

@@ -2,12 +2,12 @@
 
 
 .app {
-  padding: 15px;
+  padding: .75vw;
   width: 100%;
   box-sizing: border-box;
 }
 
-.inactive {
+.lobby {
   margin-top: 100px;
   text-align: center;
   font-size: 1.25em;
@@ -17,32 +17,37 @@
   display:flex;
   flex-wrap:wrap;
   width:100%;
-  margin-left: -15px;
+  margin-left: -.75vw;
 }
 
 .participant {
   box-sizing: border-box;
   position: relative;
   border-radius: 8px;
-  margin-left: 15px;
-  margin-bottom: 15px;
+  margin-left: .75vw;
+  margin-bottom: .75vw;
+  width: 23.5vw;
+  overflow: hidden;
+  height: 50vh;
+  -webkit-mask-image: -webkit-radial-gradient(white, black); 
+  display: flex;
+  justify-content: center;
 }
 
 .identity {
   position: absolute;
+  left: 0px;
   bottom: 15px;
   color: white;
   padding-left: 15px;
   box-sizing: border-box;
-  z-index: 1;
+  z-index: 10;
 }
 
 video {
-  width: auto;
-  height: 42vh;
-  display:block;
-  border-radius:8px;
+  display: block;
   box-shadow: 0px 0px 15px 5px #ddd;
+  -webkit-transform: scale(-1, 1);
   transform: scale(-1, 1);
 }
 
@@ -83,7 +88,24 @@ input {
 }
 
 @media (max-width: 1048px) {
-  video {
-    height: 30vh;
+  .app {
+    padding: 1vw;
   }
+
+  .participant {
+    width: 47vw;
+    margin-top: 1vw;
+    margin-bottom: 1vw;
+    margin-left: 2vw;
+    height: 42vh;
+  }
+
+  @media (orientation:landscape) {
+    .participant {
+      width: 48vw;
+      margin-left: 1vw;
+      height: 96vh;
+    }
+  }
+
 }

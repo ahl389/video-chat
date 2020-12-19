@@ -2,7 +2,7 @@
 
 
 .app {
-  padding: .75vw;
+  padding: 1%;
   width: 100%;
   box-sizing: border-box;
 }
@@ -17,16 +17,16 @@
   display:flex;
   flex-wrap:wrap;
   width:100%;
-  margin-left: -.75vw;
+  margin-left: -1%;
 }
 
 .participant {
   box-sizing: border-box;
   position: relative;
   border-radius: 8px;
-  margin-left: 1vw;
-  margin-bottom: 1vw;
-  width: 32vw;
+  margin-left: 1.33%;
+  margin-bottom: 1%;
+  width: 32%;
   overflow: hidden;
   -webkit-mask-image: -webkit-radial-gradient(white, black); 
   display: flex;

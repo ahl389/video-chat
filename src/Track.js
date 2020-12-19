@@ -15,7 +15,7 @@ class Track extends Component {
 
   componentDidMount() {
     if (this.props.track) {
-      if (this.props.track.kind != 'data') {
+      if (this.props.track.kind !== 'data') {
         const child = this.props.track.attach();
         this.ref.current.classList.add(this.props.track.kind);
         this.ref.current.appendChild(child)
@@ -31,7 +31,7 @@ class Track extends Component {
     return (
       <div className="track" ref={this.ref}>
         {
-          this.props.track && this.props.track.kind == 'data'
+          this.props.track && this.props.track.kind === 'data'
           ? <Filter name={this.state.filter || this.props.filter} />
           : ''
         }

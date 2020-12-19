@@ -18,6 +18,7 @@ class Room extends Component {
     // Add event listeneres for future participants coming or going
     this.props.room.on('participantConnected', participant => this.addParticipant(participant));
     this.props.room.on('participantDisconnected', participant => this.removeParticipant(participant));
+    this.props.room.on('dominantSpeakerChanged', participant => this.highlightDominantSpeaker(participant));
     
     window.addEventListener("beforeunload", this.leaveRoom);
   }
@@ -47,14 +48,20 @@ class Room extends Component {
     })
   }
 
+  highlightDominantSpeaker(participant) {
+    this.setState({
+      dominantSpeaker: participant.identity
+    })
+  }
+
   render() {
     return (
       <div className="room">
         <div className = "participants">
-          <Participant key={this.props.room.localParticipant.identity} localParticipant="true" participant={this.props.room.localParticipant}/>
+          <Participant key={this.props.room.localParticipant.identity} dominantSpeaker={this.state.dominantSpeaker} localParticipant="true" participant={this.props.room.localParticipant}/>
           {
             this.state.remoteParticipants.map(participant => 
-              <Participant key={participant.identity} participant={participant}/>
+              <Participant key={participant.identity} dominantSpeaker={this.state.dominantSpeaker} participant={participant}/>
             )
           }
         </div>

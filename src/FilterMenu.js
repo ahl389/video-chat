@@ -25,10 +25,9 @@ function FilterMenu(props) {
     <div className="filterMenu">
       { 
         filters.map(filter => 
-            <div 
-              className={`icon icon-${filter}`} 
-              onClick={ () => props.changeFilter(filter) }>{filter}
-            </div>
+          <div className={`icon icon-${filter}`} 
+            onClick={ () => props.changeFilter(filter) }>{filter}
+          </div>
         )
       }
     </div>

@@ -41,8 +41,10 @@ class Participant extends Component {
   }
 
   render() {
+    const isDominantSpeaker = this.props.dominantSpeaker === this.props.participant.identity ? 'dominantSpeaker' : '';
+
     return ( 
-      <div className="participant" id={this.props.participant.identity}>
+      <div className={`participant ${isDominantSpeaker}`} id={this.props.participant.identity}>
         <div className="identity">{ this.props.participant.identity}</div>
         {
           this.props.localParticipant

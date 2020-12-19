@@ -28,7 +28,8 @@ class App extends Component {
       const room = await connect(data.accessToken, {
         name:'secret-santa4',
         audio: true,
-        video: true
+        video: true,
+        dominantSpeaker: true
       });
 
       const localDataTrack = new LocalDataTrack();

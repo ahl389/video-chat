@@ -24,11 +24,10 @@
   box-sizing: border-box;
   position: relative;
   border-radius: 8px;
-  margin-left: .75vw;
-  margin-bottom: .75vw;
-  width: 23.5vw;
+  margin-left: 1vw;
+  margin-bottom: 1vw;
+  width: 32vw;
   overflow: hidden;
-  height: 50vh;
   -webkit-mask-image: -webkit-radial-gradient(white, black); 
   display: flex;
   justify-content: center;
@@ -49,6 +48,22 @@ video {
   box-shadow: 0px 0px 15px 5px #ddd;
   -webkit-transform: scale(-1, 1);
   transform: scale(-1, 1);
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.dominantSpeaker:before {
+  z-index: 20;
+  border: 5px solid red;
+  content: "";
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  box-sizing: border-box;
+  border-radius: 8px;
 }
 
 button {
@@ -98,6 +113,11 @@ input {
     margin-bottom: 1vw;
     margin-left: 2vw;
     height: 42vh;
+  }
+
+  video {
+    max-width: none;
+    max-height: none;
   }
 
   @media (orientation:landscape) {

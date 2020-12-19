@@ -50,8 +50,8 @@ class Room extends Component {
 
   highlightDominantSpeaker(participant) {
     this.setState({
-      dominantSpeaker: participant.identity
-    })
+      dominantSpeaker: participant ? participant.identity : null
+    });
   }
 
   render() {

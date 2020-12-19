@@ -54,7 +54,7 @@ class Participant extends Component {
         
         { 
           this.state.tracks.map(track => 
-            <Track key={track} filter={this.state.filter} track={track}/>)
+            <Track key={track} filter={this.state.filter} local={this.props.localParticipant} track={track}/>)
         }
       </div>
     );

@@ -11,7 +11,7 @@ function FilterMenu(props) {
   return (
     <div className="filterMenu">
       { 
-        filters.map(filter => <FilterIcon filter={filter} changeFilter={props.changeFilter}/>)
+        filters.map(filter => <FilterIcon key={filter.name} filter={filter} changeFilter={props.changeFilter}/>)
       }
     </div>
   );

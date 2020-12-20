@@ -35,10 +35,8 @@ class Participant extends Component {
   }
 
   changeFilter(filter) {
-    console.log('changing filter')
     const dataTrack = this.state.tracks.find(track => track.kind == "data");
     dataTrack.send(filter);
-    // this.setState({ filter: filter });
 
     if (this.state.filters.includes(filter)) {
       this.setState({ filters: this.state.filters.filter(f => f !== filter) });
@@ -46,18 +44,6 @@ class Participant extends Component {
       this.setState({ filters: [...this.state.filters, filter] });
     }
   }
-
-  // applyFilter(filter) {
-  //   const dataTrack = this.state.tracks.find(track => track.kind == "data");
-  //   dataTrack.send({filter: filter, action: 'apply'});
-  //   this.setState({ filters: [...this.state.filters, filter] });
-  // }
-
-  // removeFilter(filter) {
-  //   const dataTrack = this.state.tracks.find(track => track.kind == "data");
-  //   dataTrack.send({filter: filter, action: 'remove'});
-  //   this.setState({ filters: filters.filter(f => f !== filter) });
-  // }
 
   render() {
     const isDominantSpeaker = this.props.dominantSpeaker === this.props.participant.identity ? 'dominantSpeaker' : '';

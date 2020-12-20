@@ -1,10 +1,6 @@
 import './App.scss';
 
 function AVControl(props) {
-  //const icon = props.type === 'audio' ? 'microphone-slash' : 'video-slash';
-
-  console.log(props.trackOff);
-
   let icon;
 
   if (props.trackOff) {

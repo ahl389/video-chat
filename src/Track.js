@@ -24,13 +24,11 @@ class Track extends Component {
         this.ref.current.appendChild(child)
       } else {
         this.props.track.on('message', message => {
-
           if (this.state.filters.includes(message)) {
             this.setState({ filters: this.state.filters.filter(f => f !== message) });
           } else {
             this.setState({ filters: [...this.state.filters, message] });
           }
-          //this.setState({filter: message})
         });
       }
     } 
@@ -56,7 +54,7 @@ class Track extends Component {
       <div className="track" ref={this.ref}>
         {
           this.props.track && this.props.track.kind === 'data'
-          ? filters.map(filter => <Filter name={filter} />)
+          ? filters.map(filter => <Filter key={filter} name={filter} />)
           : ''
         }
 

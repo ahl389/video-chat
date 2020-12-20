@@ -1,6 +1,7 @@
 import './App.scss';
 import React, {Component} from 'react';
 import Room from './Room';
+
 const { connect, LocalDataTrack } = require('twilio-video');
 
 
@@ -71,6 +72,7 @@ class App extends Component {
                 onClick={this.removePlaceholderText} 
                 onChange={this.updateIdentity} 
                 placeholder="What's your name?"/>
+
               <button disabled={disabled} onClick={this.joinRoom}>Join Room</button>
             </div>
           : <Room leaveRoom={this.leaveRoom} room={this.state.room} />

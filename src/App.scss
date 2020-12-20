@@ -12,8 +12,10 @@
   font-family: "Mountains of Christmas", 'sans-serif';
   font-weight: bold;
   font-size: 1.5em;
-  background-color: #ff7878;
-  background-image: linear-gradient(315deg, #ff7878 0%, #74d680 74%);
+  // background-color: #ff7878;
+  // background-image: linear-gradient(315deg, #ff7878 0%, #74d680 74%);
+  background: rgb(39,1,69);
+  background: linear-gradient(135deg, rgba(39,1,69,1) 30%, rgba(1,2,51,1) 60%);
   background-size: cover;
   position: fixed;
   overflow: scroll;
@@ -46,7 +48,6 @@
 .participant {
   overflow: hidden;
   -webkit-mask-image: -webkit-radial-gradient(white, black); 
-  box-shadow: 0px 0px 15px 5px #ddd;
   position: relative;
   border-radius: 8px;
   box-sizing: border-box;
@@ -71,6 +72,7 @@ video {
   -webkit-transform: scale(-1, 1);
   transform: scale(-1, 1);
   width: 100%;
+  // box-shadow: 0px 0px 15px 5px #ddd;
 }
 
 .dominantSpeaker:before {
@@ -150,8 +152,39 @@ input {
   color: white;
 }
 
-:placeholder {
-  color: white;
+.envelopeContainer {
+  background-color: white;
+  border-radius: 10px;
+  width: 50vw;
+  height: 30vw;
+  margin: 0 auto;
+  color: #555;
+  text-align: left;
+
+  input {
+    position: relative;
+    margin-top: 8vw;
+    margin-left: 35%;
+    text-align: left;
+    margin-bottom: 0;
+    color: green;
+  }
+}
+
+.envelop {
+  position: relative;
+  top: 0;
+}
+
+.fromAddress {
+  position: relative;
+  top: 15px;
+  left: 15px;
+
+}
+
+.toAddress {
+  margin-left: 35%;
 }
 
 @media (max-width: 1023px) {

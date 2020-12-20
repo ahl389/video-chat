@@ -12,7 +12,7 @@ function FilterIcon(props) {
 
   return (
     <div className={`icon icon-${selected} icon-${props.filter.name}`} onClick={ () => toggleIcon(props.filter.name) }>
-      <i class={`fas fa-lg ${props.filter.icon}`}></i>
+      <i className={`fas fa-lg ${props.filter.icon}`}></i>
     </div>
   );
 }

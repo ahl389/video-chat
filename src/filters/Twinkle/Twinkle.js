@@ -9,27 +9,34 @@ export default class Twinkle extends Component {
       height: 30
     }
 
-    this.twinkle = React.createRef();
-    this.setHeight = this.setHeight.bind(this);
+    // this.twinkle = React.createRef();
+    // this.setHeight = this.setHeight.bind(this);
   }
 
-  componentDidMount() {
-    window.addEventListener('resize', this.setHeight);
-  }
+  // componentDidMount() {
+  //   window.addEventListener('resize', this.setHeight);
+  // }
 
-  setHeight() {
-    const width = this.twinkle.current.width;
-    const height = width * 2;
-    this.setState({height: height})
-  }
+  // componentWillUmount() {
+  //   window.removeEventListener('resize');
+  // }
+
+  // setHeight() {
+  //   console.log('this is called')
+  //   console.log(this.twinkle.current)
+  //   const width = this.twinkle.current.width;
+  //   console.log(width)
+  //   const height = width * 3;
+  //   this.setState({height: height})
+  // }
 
   render() {
     return (
-      <div className="filter twinkle" ref={this.twinkle}>
+      <div className="filter twinkle">
         { 
           Array(7).fill().map(light => {
             return (
-              <div className="light" style={{height:this.state.height}}>
+              <div className="light" >
                 <div className="fixture"></div>
                 <div className="bulb"></div>
                 <div className="string"></div>

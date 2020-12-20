@@ -15,7 +15,7 @@ function AVControl(props) {
 
   return (
     <div className="avControl">
-      <i className={`fas fa-${icon}`} aria-hidden="true" onClick={() => props.toggleTrack()}></i>
+      <i className={`fas fa-lg fa-${icon}`} onClick={() => props.toggleTrack()}></i>
     </div>
   );
 }

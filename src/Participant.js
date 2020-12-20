@@ -13,7 +13,7 @@ class Participant extends Component {
 
     this.state = {
       tracks: nonNullTracks,
-      filter: 'None' 
+      filters: [] 
     }
 
     this.changeFilter = this.changeFilter.bind(this);
@@ -35,10 +35,29 @@ class Participant extends Component {
   }
 
   changeFilter(filter) {
+    console.log('changing filter')
     const dataTrack = this.state.tracks.find(track => track.kind == "data");
     dataTrack.send(filter);
-    this.setState({ filter: filter });
+    // this.setState({ filter: filter });
+
+    if (this.state.filters.includes(filter)) {
+      this.setState({ filters: this.state.filters.filter(f => f !== filter) });
+    } else {
+      this.setState({ filters: [...this.state.filters, filter] });
+    }
   }
+
+  // applyFilter(filter) {
+  //   const dataTrack = this.state.tracks.find(track => track.kind == "data");
+  //   dataTrack.send({filter: filter, action: 'apply'});
+  //   this.setState({ filters: [...this.state.filters, filter] });
+  // }
+
+  // removeFilter(filter) {
+  //   const dataTrack = this.state.tracks.find(track => track.kind == "data");
+  //   dataTrack.send({filter: filter, action: 'remove'});
+  //   this.setState({ filters: filters.filter(f => f !== filter) });
+  // }
 
   render() {
     const isDominantSpeaker = this.props.dominantSpeaker === this.props.participant.identity ? 'dominantSpeaker' : '';
@@ -54,7 +73,7 @@ class Participant extends Component {
         
         { 
           this.state.tracks.map(track => 
-            <Track key={track} filter={this.state.filter} local={this.props.localParticipant} track={track}/>)
+            <Track key={track} filters={this.state.filters} local={this.props.localParticipant} track={track}/>)
         }
       </div>
     );

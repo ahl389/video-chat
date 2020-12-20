@@ -63,6 +63,8 @@ class App extends Component {
         { 
           this.state.room === null
           ? <div className = "lobby">
+              <h1>Circle Girls Secret Santa</h1>
+              <h1 className="year">2020</h1>
               <input 
                 ref={this.inputRef} 
                 value={this.state.identity} 

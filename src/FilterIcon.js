@@ -1,9 +1,18 @@
 import './App.scss';
+import React, { useState } from 'react';
 
 function FilterIcon(props) {
+
+  const [selected, setSelected] = useState(false);
+
+  const toggleIcon = (name => {
+    setSelected(!selected);
+    props.changeFilter(name)
+  });
+
   return (
-    <div className={`icon icon-${props.name}`} onClick={ () => props.changeFilter(props.name) }>
-      <img src={`${props.name}.png`} alt={`icon for ${props.name} filter`}/>
+    <div className={`icon icon-${selected} icon-${props.filter.name}`} onClick={ () => toggleIcon(props.filter.name) }>
+      <i class={`fas fa-lg ${props.filter.icon}`}></i>
     </div>
   );
 }
